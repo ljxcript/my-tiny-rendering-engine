@@ -1,3 +1,10 @@
+//
+//  HtmlParser.cpp
+//  cpp
+//
+//  Created by marco.liao on 2019/4/14.
+//  Copyright © 2019年 marco.liao. All rights reserved.
+//
 #include "HtmlParser.h"
 #include <typeinfo>
 #include <iostream>
@@ -97,7 +104,7 @@ void HtmlParser::visitByLayer()
   while (!container.empty()) {
 
     HtmlTagNode* firstOne = container.front();
-    std::cout << firstOne->getText() << std::endl;
+    std::cout << firstOne->getText() << " "<< firstOne->getHeight() << std::endl;
     container.erase(container.begin());
 
     std::vector<HtmlTagNode*> children = firstOne->getChildNodes();

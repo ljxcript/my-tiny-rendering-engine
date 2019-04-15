@@ -13,8 +13,10 @@ private:
 public:
   HtmlTagNode(HtmlTagNode *parentNode, std::string tagText);
   void appendChildNode(HtmlTagNode *childNode);
-  std::string getText();
+
   std::vector<HtmlTagNode*> getChildNodes();
+  std::string getText();
+  int getHeight();
 };
 
 #endif

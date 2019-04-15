@@ -1,0 +1,9 @@
+h1, h2, h3 {
+  margin: auto; color: #cc0000;
+}
+div.layer-1 {
+  margin-bottom: 20px; padding: 10px;
+}
+#d2 {
+  display: none;
+}
