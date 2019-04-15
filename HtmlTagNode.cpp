@@ -1,5 +1,6 @@
 
 #include "HtmlTagNode.h"
+#include <iostream>
 
 HtmlTagNode::HtmlTagNode(HtmlTagNode *parentNode, std::string tagText)
 {
@@ -10,7 +11,7 @@ HtmlTagNode::HtmlTagNode(HtmlTagNode *parentNode, std::string tagText)
 
 void HtmlTagNode::appendChildNode(HtmlTagNode *childNode)
 {
-  this->childNodes.push_back(childNode);
+  childNodes.push_back(childNode);
 }
 
 std::string HtmlTagNode::getText()
@@ -18,7 +19,7 @@ std::string HtmlTagNode::getText()
   return this->tagText;
 }
 
-std::vector<HtmlTagNode*> HtmlTagNode::getChildNodes()
+std::vector <HtmlTagNode*> HtmlTagNode::getChildNodes()
 {
-  return this->childNodes;
+  return childNodes;
 }

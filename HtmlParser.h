@@ -6,12 +6,12 @@ class HtmlParser
 {
 private:
   std::string htmlText;
-  HtmlTagNode root;
+  HtmlTagNode* root;
 public:
   HtmlParser(const char *filename);
   std::string get_file_contents(const char *filename);
   std::string getHtmlText();
-  HtmlTagNode parse();
+  HtmlTagNode* parse(const char *filename);
   void visitByLayer();
 };
 
