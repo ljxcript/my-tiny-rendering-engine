@@ -9,9 +9,12 @@ private:
   HtmlTagNode* root;
 public:
   HtmlParser(const char *filename);
+
+  HtmlTagNode* parse(const char *filename);
+
   std::string get_file_contents(const char *filename);
   std::string getHtmlText();
-  HtmlTagNode* parse(const char *filename);
+  
   void visitByLayer();
 };
 

@@ -1,8 +1,19 @@
-h1, h2, h3 {
-  margin: auto; color: #cc0000;
+h1,h2,h3 {
+  margin: auto;
+  color: #cc0000;
 }
 div.layer-1 {
-  margin-bottom: 20px; padding: 10px;
+  .layer-2 {
+    background-color: blue;
+    padding: 20px;
+    .layer-3 {
+      background-color: yellow;
+    }
+  }
+  background-color: red;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 500px;
 }
 #d2 {
   display: none;

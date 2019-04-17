@@ -9,18 +9,22 @@
 #ifndef CSSPARSER_H
 #define CSSPARSER_H
 #include <string>
-#include "HtmlTagNode.h"
-class HtmlParser
+#include "CssRuleNode.h"
+#include "CssToken.h"
+
+class CssParser
 {
 private:
-  std::string htmlText;
-  HtmlTagNode* root;
+  std::string cssText;
+  std::vector<CssRuleNode> nodeList;
+  int nodeLength;
 public:
-  HtmlParser(const char *filename);
+  CssParser(const char *filename);
   std::string get_file_contents(const char *filename);
-  std::string getHtmlText();
-  HtmlTagNode* parse(const char *filename);
-  void visitByLayer();
+  std::string getCssText();
+  std::vector<CssRuleNode> parse(const char *filename);
+  std::vector<CssToken*> tokenize();
+  void traverse();
 };
 
 #endif

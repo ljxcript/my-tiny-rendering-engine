@@ -6,13 +6,11 @@
 //  Copyright © 2019年 marco.liao. All rights reserved.
 //
 #include <iostream>
-#include "HtmlParser.h"
+#include "CssParser.h"
 #include <regex>
 
 int main(int argc, char const *argv[]) {
 
-  HtmlParser parser(argv[1]);
-  std::string html = parser.getHtmlText();
-  parser.visitByLayer();
+  CssParser parser(argv[1]);
   return 0;
 }
