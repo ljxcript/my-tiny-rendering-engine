@@ -11,6 +11,7 @@
 #include <string>
 #include "CssRuleNode.h"
 #include "CssGrammarToken.h"
+#include "CssASTNode.h"
 
 class CssParser
 {
@@ -26,12 +27,12 @@ public:
   std::vector<CssGrammarToken*> tokenize();
   void traverse();
 
-  bool TYPE_SELECTOR(std::vector<CssGrammarToken> tokenStream, int &i);
-  bool TYPE_LEFTBRACKET(std::vector<CssGrammarToken> tokenStream, int &i);
-  bool TYPE_RIGHTBRACKET(std::vector<CssGrammarToken> tokenStream, int &i);
-  bool STYLE(std::vector<CssGrammarToken> tokenStream, int &i);
+  bool match_TYPE_SELECTOR(const std::vector<CssGrammarToken*> &tokenStream, int &i);
+  bool match_TYPE_LEFTBRACKET(const std::vector<CssGrammarToken*> &tokenStream, int &i);
+  bool match_TYPE_RIGHTBRACKET(const std::vector<CssGrammarToken*> &tokenStream, int &i);
+  bool match_STYLE(const std::vector<CssGrammarToken*> &tokenStream, int &i);
 
-  ASTNODE* E (std::vector<CssGrammarToken> tokenStream, int &i, ASTNODE* parentNode);
+  CssASTNode* E (const std::vector<CssGrammarToken*> &tokenStream, int &i, CssASTNode* parentNode);
 };
 
 #endif
