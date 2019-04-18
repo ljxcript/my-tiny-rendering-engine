@@ -10,7 +10,7 @@
 #define CSSPARSER_H
 #include <string>
 #include "CssRuleNode.h"
-#include "CssToken.h"
+#include "CssGrammarToken.h"
 
 class CssParser
 {
@@ -23,8 +23,15 @@ public:
   std::string get_file_contents(const char *filename);
   std::string getCssText();
   std::vector<CssRuleNode> parse(const char *filename);
-  std::vector<CssToken*> tokenize();
+  std::vector<CssGrammarToken*> tokenize();
   void traverse();
+
+  bool TYPE_SELECTOR(std::vector<CssGrammarToken> tokenStream, int &i);
+  bool TYPE_LEFTBRACKET(std::vector<CssGrammarToken> tokenStream, int &i);
+  bool TYPE_RIGHTBRACKET(std::vector<CssGrammarToken> tokenStream, int &i);
+  bool STYLE(std::vector<CssGrammarToken> tokenStream, int &i);
+
+  ASTNODE* E (std::vector<CssGrammarToken> tokenStream, int &i, ASTNODE* parentNode);
 };
 
 #endif

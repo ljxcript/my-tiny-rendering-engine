@@ -1,25 +1,25 @@
 //
-//  CssToken.cpp
+//  CssGrammarToken.cpp
 //  cpp
 //
 //  Created by marco.liao on 2019/4/17.
 //  Copyright © 2019年 marco.liao. All rights reserved.
 //
 #include <iostream>
-#include "CssToken.h"
+#include "CssGrammarToken.h"
 
-CssToken::CssToken(std::string type, std::string text)
+CssGrammarToken::CssGrammarToken(std::string type, std::string text)
 {
   this->type = type;
   this->text = text;
 }
 
-std::string CssToken::getText()
+std::string CssGrammarToken::getText()
 {
   return this->text;
 }
 
-std::string CssToken::getType()
+std::string CssGrammarToken::getType()
 {
   return this->type;
 }

@@ -1,3 +1,11 @@
+//
+//  CssParser.cpp
+//  cp
+//
+//  Created by marco.liao on 2019/4/14.
+//  Copyright © 2019年 marco.liao. All rights reserved.
+//  Naturally support nested grammar like
+//
 #include "CssParser.h"
 #include <iostream>
 #include <fstream>
@@ -7,13 +15,75 @@
 #define TYPE_RIGHTBRACKET "TYPE_RIGHTBRACKET"
 #define TYPE_STYLENAME "TYPE_STYLENAME"
 #define TYPE_STYLEVALUE "TYPE_STYLEVALUE"
-//
-//  CssParser.cpp
-//  cp
-//
-//  Created by marco.liao on 2019/4/14.
-//  Copyright © 2019年 marco.liao. All rights reserved.
-//
+
+bool CssParser::TYPE_SELECTOR(std::vector<CssGrammarToken> tokenStream, int &i) {
+  if (tokenStream[i]->getType() == TYPE_SELECTOR) {
+    i++;
+    return true;
+  }
+  return false
+}
+
+bool CssParser::TYPE_LEFTBRACKET(std::vector<CssGrammarToken> tokenStream, int &i) {
+  if (tokenStream[i]->getType() == TYPE_LEFTBRACKET) {
+    i++;
+    return true;
+  }
+  return false
+}
+
+bool CssParser::TYPE_RIGHTBRACKET(std::vector<CssGrammarToken> tokenStream, int &i) {
+  if (tokenStream[i]->getType() == TYPE_RIGHTBRACKET) {
+    i++;
+    return true;
+  }
+  return false
+}
+
+bool CssParser::STYLE(std::vector<CssGrammarToken> tokenStream, int &i) {
+  if (tokenStream[i]->getType() == TYPE_STYLENAME){
+    i++;
+    if (tokenStream[i]->getType() == TYPE_STYLEVALUE) {
+      i++;
+      return true;
+    }
+    i--;
+  }
+  return false;
+}
+
+
+ASTNode* CssParser::E (std::vector<CssGrammarToken> tokenStream, int &i, ASTNode* parentNode) {
+  int start = i;
+  ASTNode* tmpNode = new ASTNode(parentNode);
+
+  bool isMatched = TYPE_SELECTOR(tokenStream, i)
+                && TYPE_LEFTBRACKET(tokenStream, i)
+                && (E(tokenStream, i) != NULL || STYLE(tokenStream, i))
+                && TYPE_RIGHTBRACKET(tokenStream, i);
+
+  if (isMatched) {
+    tmpNode->value = tokenStream[start, i];
+    if (parentNode != NULL) {
+      parentNode->appendChild(tmpNode);
+    }
+    return tmpNode;
+  } else {
+    delete tmpNode;
+    i = start;
+    return NULL;
+  }
+}
+
+void CssParser::parse () {
+    std::vector<CssGrammarToken*> tokenStream = this->tokenize();
+    int pointer = 0;
+    ASTNode* root = E(tokenStream, pointer, NULL);
+    if (ASTNode == NULL) {
+      std::cout << "error while parsing, please check the grammar validity" << std::endl;
+    }
+}
+
 CssParser::CssParser(const char *filename) : nodeList(this->parse(filename))
 {
   nodeLength = 0;
@@ -38,10 +108,10 @@ std::string CssParser::getCssText()
   return this->cssText;
 }
 
-std::vector<CssToken*> CssParser::tokenize()
+std::vector<CssGrammarToken*> CssParser::tokenize()
 {
   std::string s = this->getCssText();
-  std::vector<CssToken*> res;
+  std::vector<CssGrammarToken*> res;
   std::smatch m;
   std::regex e("[^\\s\\n\\t]+[\\s\\n\\t]+");
   while(std::regex_search(s,m,e)) {
@@ -52,21 +122,21 @@ std::vector<CssToken*> CssParser::tokenize()
       std::regex RIGHTBRACKET("^\\}$");
       std::regex STYLENAME("^[a-z][a-z-]+:$");
       std::regex STYLEVALUE("^[a-z-\\s0-9#]+;$"); // do not support calc, rgba() for now
-      CssToken* token;
+      CssGrammarToken* token;
       if (std::regex_match(trimedStr, SELECTOR)) {
-        token = new CssToken(TYPE_SELECTOR, trimedStr);
+        token = new CssGrammarToken(TYPE_SELECTOR, trimedStr);
       }
       if (std::regex_match(trimedStr, LEFTBRACKET)) {
-        token = new CssToken(TYPE_LEFTBRACKET, trimedStr);
+        token = new CssGrammarToken(TYPE_LEFTBRACKET, trimedStr);
       }
       if (std::regex_match(trimedStr, RIGHTBRACKET)) {
-        token = new CssToken(TYPE_RIGHTBRACKET, trimedStr);
+        token = new CssGrammarToken(TYPE_RIGHTBRACKET, trimedStr);
       }
       if (std::regex_match(trimedStr, STYLENAME)) {
-        token = new CssToken(TYPE_STYLENAME, trimedStr);
+        token = new CssGrammarToken(TYPE_STYLENAME, trimedStr);
       }
       if (std::regex_match(trimedStr, STYLEVALUE)) {
-        token = new CssToken(TYPE_STYLEVALUE, trimedStr);
+        token = new CssGrammarToken(TYPE_STYLEVALUE, trimedStr);
       }
       res.push_back(token);
     }
@@ -79,7 +149,7 @@ std::vector<CssRuleNode> CssParser::parse(const char *filename)
 {
 
   this->cssText = get_file_contents(filename);
-  std::vector<CssToken*> tokenStream = this->tokenize();
+  std::vector<CssGrammarToken*> tokenStream = this->tokenize();
   for (int i = 0; i < tokenStream.size(); i++) {
     std::cout << tokenStream[i]->getType() << " -> " << tokenStream[i]->getText() << std::endl;
   }

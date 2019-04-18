@@ -1,17 +1,17 @@
-#ifndef CSSTOKEN_H
-#define CSSTOKEN_H
+#ifndef CSSGRAMMARTOKEN_H
+#define CSSGRAMMARTOKEN_H
 #include <vector>
 #include <string>
 
-class CssToken
+class CssGrammarToken
 {
 private:
 
   std::string type;
   std::string text;
 public:
-  CssToken(std::string type, std::string text);
-  
+  CssGrammarToken(std::string type, std::string text);
+
   std::string getType();
   std::string getText();
 };
