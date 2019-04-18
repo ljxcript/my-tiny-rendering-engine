@@ -2,19 +2,19 @@
 #define CSSRULENODE_H
 #include <vector>
 #include <string>
+#include "CssASTNode.h"
 
 class CssRuleNode
 {
 private:
-  std::vector<CssRuleNode*> childNodes;
-  std::string ruleText;
-  int id;
+    CssASTNode* AST;
+    std::string ruleText;
 public:
-  CssRuleNode(int id, std::string ruleText);
+    CssRuleNode( std::string ruleText, CssASTNode* AST);
 
-  std::vector<CssRuleNode*> getChildNodes();
-  std::string getRuleText();
-  int getId();
+    CssASTNode* getAST();
+    std::string getRuleText();
+
 };
 
 #endif

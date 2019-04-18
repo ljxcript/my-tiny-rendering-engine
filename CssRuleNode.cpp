@@ -8,23 +8,18 @@
 #include "CssRuleNode.h"
 #include <iostream>
 
-CssRuleNode::CssRuleNode(int id, std::string ruleText)
+CssRuleNode::CssRuleNode(std::string ruleText, CssASTNode* root)
 {
-  this->id = id;
-  this->ruleText = ruleText;
+    this->AST = root;
+    this->ruleText = ruleText;
 }
 
 std::string CssRuleNode::getRuleText()
 {
-  return ruleText;
+    return ruleText;
 }
 
-std::vector<CssRuleNode*> CssRuleNode::getChildNodes()
+CssASTNode* CssRuleNode::getAST()
 {
-  return childNodes;
-}
-
-int CssRuleNode::getId()
-{
-  return id;
+    return this->AST;
 }

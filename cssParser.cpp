@@ -18,7 +18,7 @@
 
 bool CssParser::match_TYPE_SELECTOR(const std::vector<CssGrammarToken*> &tokenStream, int &i, CssASTNode* parentNode) {
     if (tokenStream[i]->getType() == TYPE_SELECTOR) {
-        
+
         CssASTNode* tmpNode = new CssASTNode(parentNode);
         tmpNode->setType(TYPE_SELECTOR);
         tmpNode->setText(tokenStream[i]->getText());
@@ -132,19 +132,25 @@ std::vector<CssRuleNode> CssParser::parse(const char *filename)
     this->cssText = get_file_contents(filename);
     std::cout << this->cssText << std::endl;
     std::vector<CssGrammarToken*> tokenStream = this->tokenize();
+
     int pointer = 0;
-    CssASTNode* root = E(tokenStream, pointer, NULL);
-    if (root == NULL) {
-        std::cout << "error while parsing, please check the grammar validity" << std::endl;
-    }
     std::vector<CssRuleNode> nodeList;
+    while(pointer < tokenStream.size()) {
+        CssASTNode* root = E(tokenStream, pointer, NULL);
+        if (root == NULL) {
+            std::cout << "error while parsing, please check the grammar validity" << std::endl;
+        }
+        nodeList.push_back(CssRuleNode(root->getText(), root));
+    }
+
     return nodeList;
 }
 
 
 CssParser::CssParser(const char *filename) : nodeList(this->parse(filename))
 {
-    nodeLength = 0;
+    this->nodeLength = this->nodeList.size();
+    std::cout << nodeLength << " rules found" << std::endl;
 }
 
 std::string CssParser::get_file_contents(const char *filename)
