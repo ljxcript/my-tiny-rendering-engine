@@ -1,3 +1,19 @@
+div.layer-1 {
+    .layer-2 {
+
+        .layer-3 {
+            .layer-4 {
+                height: 100px;
+            }
+        }
+        background-color: blue;
+        padding: 20px;
+    }
+    background-color: red;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 500px;
+}
 h1,h2,h3 {
   margin: auto;
   color: #cc0000;
@@ -17,5 +33,4 @@ div.layer-1 {
 }
 #d2 {
   display: none;
-  color: red;
 }

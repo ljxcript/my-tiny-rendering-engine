@@ -140,6 +140,7 @@ std::vector<CssRuleNode> CssParser::parse(const char *filename)
         if (root == NULL) {
             std::cout << "error while parsing, please check the grammar validity" << std::endl;
         }
+        root->visitByLayer();
         nodeList.push_back(CssRuleNode(root->getText(), root));
     }
 
@@ -149,7 +150,7 @@ std::vector<CssRuleNode> CssParser::parse(const char *filename)
 
 CssParser::CssParser(const char *filename) : nodeList(this->parse(filename))
 {
-    this->nodeLength = this->nodeList.size();
+    this->nodeLength = (int)this->nodeList.size();
     std::cout << nodeLength << " rules found" << std::endl;
 }
 

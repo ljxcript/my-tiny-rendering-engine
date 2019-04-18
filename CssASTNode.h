@@ -6,17 +6,21 @@
 class CssASTNode
 {
 private:
-  std::vector<CssASTNode*> childNodes;
-  std::string text;
-  CssASTNode* parentNode;
+    std::vector<CssASTNode*> childNodes;
+    std::string text;
+    std::string type;
+    CssASTNode* parentNode;
 public:
-  CssASTNode(CssASTNode *parentNode);
+    CssASTNode(CssASTNode *parentNode);
 
-  void appendChildNode(CssASTNode *childNode);
-  void setText(std::string tagText);
+    void visitByLayer();
+    void appendChildNode(CssASTNode *childNode);
+    void setText(std::string text);
+    void setType(std::string type);
 
-  std::vector<CssASTNode*> getChildNodes();
-  std::string getText();
+    std::vector<CssASTNode*> getChildNodes();
+    std::string getText();
+    std::string getType();
 };
 
 #endif
