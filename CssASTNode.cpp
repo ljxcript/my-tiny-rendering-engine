@@ -51,7 +51,7 @@ void CssASTNode::visitByLayer()
     while (!container.empty()) {
 
         CssASTNode* firstOne = container.front();
-        std::cout << firstOne->getType() << " " << std::endl;
+        std::cout << firstOne->getType() << " ";
         container.erase(container.begin());
 
         std::vector<CssASTNode*> children = firstOne->getChildNodes();
@@ -59,7 +59,7 @@ void CssASTNode::visitByLayer()
         for (int i = 0; i < childrenNums; i++) {
             container.push_back(children[i]);
         }
-
+        std::cout << std::endl;
     }
 
 }

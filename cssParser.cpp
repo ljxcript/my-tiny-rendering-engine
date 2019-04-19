@@ -104,7 +104,7 @@ CssASTNode* CssParser::E (const std::vector<CssGrammarToken*> &tokenStream, int 
         (match_STYLE(tokenStream, i, tmpNode) && E(tokenStream, i, tmpNode) != NULL)
         ||
         (match_STYLE(tokenStream, i, tmpNode))
-       )
+        )
     && match_TYPE_RIGHTBRACKET(tokenStream, i, tmpNode);
 
     if (isMatched) {
@@ -125,6 +125,10 @@ CssASTNode* CssParser::E (const std::vector<CssGrammarToken*> &tokenStream, int 
     }
 }
 
+std::vector<CssRuleNode> CssParser::getNodeList()
+{
+    return this->nodeList;
+}
 
 std::vector<CssRuleNode> CssParser::parse(const char *filename)
 {
@@ -140,7 +144,7 @@ std::vector<CssRuleNode> CssParser::parse(const char *filename)
         if (root == NULL) {
             std::cout << "error while parsing, please check the grammar validity" << std::endl;
         }
-        root->visitByLayer();
+//        root->visitByLayer();
         nodeList.push_back(CssRuleNode(root->getText(), root));
     }
 

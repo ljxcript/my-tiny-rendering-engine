@@ -10,16 +10,16 @@
 
 CssGrammarToken::CssGrammarToken(std::string type, std::string text)
 {
-  this->type = type;
-  this->text = text;
+    this->type = type;
+    this->text = text;
 }
 
 std::string CssGrammarToken::getText()
 {
-  return this->text;
+    return this->text;
 }
 
 std::string CssGrammarToken::getType()
 {
-  return this->type;
+    return this->type;
 }

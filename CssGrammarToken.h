@@ -7,13 +7,13 @@ class CssGrammarToken
 {
 private:
 
-  std::string type;
-  std::string text;
+    std::string type;
+    std::string text;
 public:
-  CssGrammarToken(std::string type, std::string text);
+    CssGrammarToken(std::string type, std::string text);
 
-  std::string getType();
-  std::string getText();
+    std::string getType();
+    std::string getText();
 };
 
 #endif

@@ -18,7 +18,7 @@ h1,h2,h3 {
   margin: auto;
   color: #cc0000;
 }
-div.layer-1 {
+span.layer-1 {
   .layer-2 {
     background-color: blue;
     padding: 20px;
@@ -26,10 +26,10 @@ div.layer-1 {
       background-color: yellow;
     }
   }
-  background-color: red;
-  margin-bottom: 20px;
-  padding: 10px;
-  width: 500px;
+  background-color: green;
+  margin-bottom: 88px;
+  padding: 77px;
+  width: 433px;
 }
 #d2 {
   display: none;

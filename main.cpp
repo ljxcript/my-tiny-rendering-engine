@@ -6,11 +6,21 @@
 //  Copyright © 2019年 marco.liao. All rights reserved.
 //
 #include <iostream>
-#include "CssParser.h"
+#include "StyledTree.h"
 #include <regex>
 
-int main(int argc, char const *argv[]) {
+#include <unistd.h>
 
-  CssParser parser(argv[1]);
-  return 0;
+
+int main(int argc, char const *argv[]) {
+    const int MAXPATH=250;
+    char buffer[MAXPATH];
+    getcwd(buffer, MAXPATH);
+    printf("The current directory is: %s", buffer);
+
+    std::cout << std::endl << argv[1] << argv[2] << std::endl;
+    StyledTree styledTree(argv[1], argv[2]);
+    styledTree.applyStyleRules();
+    styledTree.visitByLayer();
+    return 0;
 }
