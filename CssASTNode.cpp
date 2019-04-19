@@ -23,6 +23,17 @@ std::string CssASTNode::getText()
     return this->text;
 }
 
+std::string CssASTNode::getKey()
+{
+    return this->key;
+}
+
+std::string CssASTNode::getValue()
+{
+    return this->value;
+}
+
+
 std::string CssASTNode::getType()
 {
     return this->type;
@@ -43,6 +54,17 @@ void CssASTNode::setType(std::string type)
     this->type = type;
 }
 
+void CssASTNode::setKey(std::string key)
+{
+    this->key = key;
+}
+
+void CssASTNode::setValue(std::string value)
+{
+    this->value = value;
+}
+
+
 void CssASTNode::visitByLayer()
 {
 
@@ -55,7 +77,7 @@ void CssASTNode::visitByLayer()
         container.erase(container.begin());
 
         std::vector<CssASTNode*> children = firstOne->getChildNodes();
-        int childrenNums = children.size();
+        int childrenNums = (int)children.size();
         for (int i = 0; i < childrenNums; i++) {
             container.push_back(children[i]);
         }

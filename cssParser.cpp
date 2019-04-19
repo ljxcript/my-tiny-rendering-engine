@@ -70,11 +70,11 @@ bool CssParser::match_STYLE(const std::vector<CssGrammarToken*> &tokenStream, in
 
             CssASTNode* tmpNode = new CssASTNode(parentNode);
             tmpNode->setType("STYLE");
-            tmpNode->setText(tokenStream[i]->getText());
+            tmpNode->setKey(tokenStream[i]->getText());
 
             i++;
             if (tokenStream[i]->getType() == TYPE_STYLEVALUE) {
-
+                tmpNode->setValue(tokenStream[i]->getText());
                 tmpNode->setText(tmpNode->getText() + tokenStream[i]->getText());
 
                 i++;

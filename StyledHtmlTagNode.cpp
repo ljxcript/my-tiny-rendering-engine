@@ -31,16 +31,17 @@ std::vector <StyledHtmlTagNode*> StyledHtmlTagNode::getChildNodes()
     return childNodes;
 }
 
-void StyledHtmlTagNode::setStyle(std::string s)
+void StyledHtmlTagNode::setStyle(std::string k, std::string v)
 {
-    this->style.push_back(s);
+    this->style[k] = v;
 }
 
 std::string StyledHtmlTagNode::getStyleText()
 {
     std::string res = "";
-    for (int i = 0; i < this->style.size(); i++) {
-        res += style[i];
+    for (std::map<std::string,std::string>::iterator it=this->style.begin(); it!=this->style.end(); ++it) {
+        res += it->first;
+        res += it->second;
     }
     return res;
 }

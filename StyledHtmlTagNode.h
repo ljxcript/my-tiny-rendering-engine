@@ -11,19 +11,20 @@
 #include <vector>
 #include <string>
 #include "HtmlTagNode.h"
+#include <map>
 
 class StyledHtmlTagNode
 {
 private:
     HtmlTagNode* htmlNode;
-    std::vector<std::string> style;
+    std::map<std::string, std::string> style;
     std::vector<StyledHtmlTagNode*> childNodes;
     StyledHtmlTagNode* parentNode;
 public:
     StyledHtmlTagNode(StyledHtmlTagNode* parentNode, HtmlTagNode* h);
     void appendChildNode(StyledHtmlTagNode *childNode);
     void visitByLayer(std::vector<StyledHtmlTagNode*> &matchedNodes, std::vector<std::string> &andRules);
-    void setStyle(std::string);
+    void setStyle(std::string k, std::string v);
 
     std::vector<StyledHtmlTagNode*> getChildNodes();
     std::string getStyleText();

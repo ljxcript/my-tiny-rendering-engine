@@ -85,7 +85,7 @@ void StyledTree::applyStyleRule(StyledHtmlTagNode* styleNode, CssASTNode* E) {
     for (int j = 0; j < cssRuleASTNodes.size(); j++){
         if (cssRuleASTNodes[j]->getType() == "STYLE") {
             for (int k = 0; k < nodesMatchedBySelector.size(); k++) {
-                nodesMatchedBySelector[k]->setStyle(cssRuleASTNodes[j]->getText());
+                nodesMatchedBySelector[k]->setStyle(cssRuleASTNodes[j]->getKey(), cssRuleASTNodes[j]->getValue());
             }
         }
         if (cssRuleASTNodes[j]->getType() == "E") {
