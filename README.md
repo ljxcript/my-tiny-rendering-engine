@@ -6,7 +6,9 @@
 ## CssParser
 * parse the stylesheet by rules, using top-down, left-recursive parsing method.
 * support nested style rules.
+
 ![image](https://github.com/ljxcript/my-tiny-rendering-engine/blob/master/nestedCss.png)
+
 ## StyledTree
 * apply css rules to build a styled AST
 
