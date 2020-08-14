@@ -42,3 +42,45 @@
   </body>
 </html>
 ```
+
+```css
+div.layer-1 {
+    .layer-2 {
+
+        .layer-3 {
+            .layer-4 {
+                height: 100px;
+            }
+        }
+        background-color: blue;
+        padding: 20px;
+    }
+    background-color: red;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 500px;
+}
+h1,h2,h3 {
+  margin: auto;
+  color: #cc0000;
+}
+span.layer-1 {
+  .layer-2 {
+    background-color: blue;
+    padding: 20px;
+    .layer-3 {
+      background-color: yellow;
+    }
+  }
+  background-color: green;
+  margin-bottom: 88px;
+  padding: 77px;
+  width: 433px;
+}
+#d2 {
+  display: none;
+}
+```
+
+## result
+![image](https://github.com/ljxcript/my-tiny-rendering-engine/blob/master/GTScreenshot_20200814_174239.png)
