@@ -17,3 +17,28 @@
 
 ## Paint
 * use opengl to paint rectangles, according to height, width, top and left provided by getBoundingClientRect().
+
+## Sample Input
+
+```html
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8"/>
+    <title></title>
+  </head>
+  <body>
+    <div id="d1" class="layer-1">
+      <div id="d1-1" class="layer-2"><h1></h1></div>
+      <div id="d1-2" class="layer-2"><h2></h2></div>
+    </div>
+    <span id="s2" class="layer-1">
+      <div id="d2-1" class="layer-2">
+        <div id="d2-1-1" class="layer-3">
+          <div id="d2" class="layer-4"><h3></h3></div>
+        </div>
+      </div>
+    </span>
+    <div id="d3" class="layer-1"></div>
+  </body>
+</html>
+```
